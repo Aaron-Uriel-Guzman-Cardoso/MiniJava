@@ -144,11 +144,11 @@ t_OPERATOR_UNEQUAL = r'!='
 
 t_OPERATOR_COMMA = r','
 
-def t_COMMENT_SL(t):
-	r'[a-z]+'
+def t_COMMENTS_SL(t):
+	r'\/\/.*'
 	
-def t_COMMENT_ML(t):
-	r'[A-Z]+'
+def t_COMMENTS_ML(t):
+	r'\/\*[\w*\W*]*\*\/'
 
 t_ignore = " \t"
 
