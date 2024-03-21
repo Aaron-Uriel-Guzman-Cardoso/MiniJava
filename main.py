@@ -53,7 +53,7 @@ def t_IDENTIFIER(t):
 
 def t_ILLFORMED(t):
     r'\b[0-9][\w.*]*\b'
-    print(Token no valido: Los identificadores no empiezan con numero.)
+    print('Token no valido: Los identificadores no empiezan con numero.')
 
 # Esta necesita más trabajo para obtener solo el número de importancia.
 def t_INTEGER_LITERAL(t):
