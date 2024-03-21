@@ -54,6 +54,7 @@ def t_IDENTIFIER(t):
 def t_ILLFORMED(t):
     r'\b[0-9][\w.*]*\b'
     print('Token no válido: Los identificadores no empiezan con número.')
+  
 def t_WRONG_FLOAT(t):
     r'(\d+\.(?!\d))|((?<!\d)\.\d+)'
     print('Token no válido: Numero flotante mal estructurado')
