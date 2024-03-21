@@ -51,7 +51,8 @@ tokens = (
     #'POS_INTEGER',
     #'FLOAT',
     'COMMENTS_SL',
-    'COMMENTS_ML'
+    'COMMENTS_ML',
+     'WRONGCARID'
 )
 
 t_KEYWORD_CLASS = r'class'
@@ -149,6 +150,10 @@ def t_COMMENTS_SL(t):
 	
 def t_COMMENTS_ML(t):
 	r'\/\*[\w*\W*]*\*\/'
+
+def t_WRONGCARID(t):
+	r'(\b)?(\w*[^\w |;\n]+\w*)+(\b)?/gm'
+	return (t)
 
 t_ignore = " \t"
 
