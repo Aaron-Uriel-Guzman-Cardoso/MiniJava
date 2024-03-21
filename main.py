@@ -53,8 +53,12 @@ def t_IDENTIFIER(t):
 
 def t_ILLFORMED(t):
     r'\b[0-9][\w.*]*\b'
-    print('Token no valido: Los identificadores no empiezan con numero.')
+    print('Token no válido: Los identificadores no empiezan con número.')
 
+def t_WRONG_FLOAT(t):
+    r'(\d+\.(?!\d))|((?<!\d)\.\d+)'
+    print('Token no válido: Numero flotante mal estructurado')
+    
 # Esta necesita más trabajo para obtener solo el número de importancia.
 def t_INTEGER_LITERAL(t):
     r'\b0*([1-3]?[0-9]{1,9}|41[0-9]{8}|428[0-9]{7}|4293[0-9]{6}|42948[0-9]{5}|429495[0-9]{4}|4294966[0-9]{3}|42949671[0-9]{2}|429496728[0-9]|429496729[0-5])\b'
