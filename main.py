@@ -1,8 +1,8 @@
 import ply
 import ply.lex
 
-operators = [ '+', '-', '/', '*', '&', '|', '<', '>',
-              '.', '!', ',' ]
+operators = ['+', '-', '/', '*', '&', '|', '<', '>',
+             '.', '!', ',', '=']
 grouping = [ '[', ']', '(', ')', '{', '}' ]
 misc = [ ';' ]
 literals = operators + grouping + misc
