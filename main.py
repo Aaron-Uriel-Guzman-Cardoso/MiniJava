@@ -49,6 +49,7 @@ def t_error(t):
 
 def t_IDENTIFIER(t):
     r'\b[_][\w]|[a-zA-Z]+[_\w]*\b'
+    t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
 def t_ILLFORMED(t):
