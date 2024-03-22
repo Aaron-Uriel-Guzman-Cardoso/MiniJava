@@ -48,16 +48,26 @@ def t_error(t):
     t.lexer.skip(1)
 
 def t_IDENTIFIER(t):
-    r'\b[_][0-9a-zA-Z]|[a-zA-Z]+[_0-9a-zA-Z]*\b'
+    r'\b[_][\w]|[a-zA-Z]+[_\w]*\b'
     return t
 
 def t_ILLFORMED(t):
-    r'\b[0-9][\w.*]*\b'
-    print('Token no válido: Los identificadores no empiezan con número.')
+    r'(\d+)([_][\w]|[a-zA-Z]+[_0-9a-zA-Z]*)'
+    print('Token no válido: (%s) Los identificadores no empiezan con número.'  % t.value)
 
 def t_WRONG_FLOAT(t):
     r'(\d+\.(?!\d))|((?<!\d)\.\d+)'
-    print('Token no válido: Numero flotante mal estructurado')
+    print('Token no válido: (%s) Numero flotante mal estructurado' % t.value)
+    
+def t_COMMENTS_SL(t):
+    r'\/\/.*'
+    pass
+	
+def t_COMMENTS_ML(t):
+    r'\/\*[\w*\W*]*\*\/'
+    pass
+
+
     
 # Esta necesita más trabajo para obtener solo el número de importancia.
 def t_INTEGER_LITERAL(t):
