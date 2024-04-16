@@ -35,7 +35,7 @@ reserved = {
     'System.out.println': 'PRINTLN'
 }
 tokens = (['IDENTIFIER', 'INTEGER_LITERAL', 'FLOAT_LITERAL',
-           'LESS_EQUAL', 'MORE_EQUAL'] + list(reserved.values()))
+        'LESS_EQUAL', 'MORE_EQUAL', 'COMMENTS_SL', 'COMMENTS_ML'] + list(reserved.values()))
 
 t_ignore = ' \t'
 
@@ -47,10 +47,6 @@ def t_error(t):
     print("Token ilegal encontrado: '%s'" % t.value[0])
     t.lexer.skip(1)
 
-def t_IDENTIFIER(t):
-    r'\b[_][\w]|[a-zA-Z]+[_\w]*\b'
-    t.type = reserved.get(t.value, 'IDENTIFIER')
-    return t
 
 def t_ILLFORMED(t):
     r'(\d+)([_][\w]|[a-zA-Z]+[_0-9a-zA-Z]*)'
@@ -59,7 +55,13 @@ def t_ILLFORMED(t):
 def t_WRONG_FLOAT(t):
     r'(\d+\.(?!\d))|((?<!\d)\.\d+)'
     print('Token no válido: (%s) Numero flotante mal estructurado' % t.value)
-    
+
+def t_IDENTIFIER(t):
+    r'\b(System\.out\.println)|([_][\w])|([a-zA-Z]+[_\w]*)\b'
+    t.type = reserved.get(t.value, 'IDENTIFIER')
+    return t
+
+
 def t_COMMENTS_SL(t):
     r'\/\/.*'
     pass
@@ -68,8 +70,6 @@ def t_COMMENTS_ML(t):
     r'\/\*[\w*\W*]*\*\/'
     pass
 
-
-    
 # Esta necesita más trabajo para obtener solo el número de importancia.
 def t_INTEGER_LITERAL(t):
     r'\b0*([1-3]?[0-9]{1,9}|41[0-9]{8}|428[0-9]{7}|4293[0-9]{6}|42948[0-9]{5}|429495[0-9]{4}|4294966[0-9]{3}|42949671[0-9]{2}|429496728[0-9]|429496729[0-5])\b'
@@ -80,7 +80,7 @@ def t_FLOAT_LITERAL(t):
     return t
 
 def main():
-    input_file = open("inputs/factorial.java", "r")
+    input_file = open("inputs/Ejemplo2.java", "r")
     lexer = ply.lex.lex()
     lexer.input(input_file.read())
     while True:
