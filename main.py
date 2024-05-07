@@ -1,3 +1,4 @@
+import sys
 import ply
 import ply.lex
 
@@ -82,9 +83,14 @@ def t_FLOAT_LITERAL(t):
     return t
 
 def main():
-    input_file = open("inputs/Ejemplo2.java", "r")
+    if (len(sys.argv) < 2):
+        print("Forma de uso:")
+        print("\tpython3 main.py [ENTRADA]")
+        return
+    filename = sys.argv[1]
+    inputStr = open(filename, "r").read()
     lexer = ply.lex.lex()
-    lexer.input(input_file.read())
+    lexer.input(inputStr)
     while True:
         tok = lexer.token()
         if not tok:
