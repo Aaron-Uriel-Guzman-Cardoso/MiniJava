@@ -57,7 +57,7 @@ def t_WRONG_FLOAT(t):
     print('Token no válido: (%s) Numero flotante mal estructurado' % t.value)
 
 def t_IDENTIFIER(t):
-    r'\b(System\.out\.println)|([_][\w])|([a-zA-Z]+[_\w]*)\b'
+    r'(System\.out\.println)|(_+[a-zA-Z0-9]+)|([a-zA-Z][_a-zA-Z0-9]*)'
     t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
