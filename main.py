@@ -49,8 +49,8 @@ def t_error(t):
     t.lexer.skip(1)
 
 def t_ILLFORMED(t):
-    r'(\d+)([_][\w]|[a-zA-Z]+[_0-9a-zA-Z]*)'
-    print('Token no válido: (%s) Los identificadores no empiezan con número.'  % t.value)
+    r'(\b_\b)|(\b[0-9]+[_a-zA-Z].*?\b)'
+    print('Token no válido: (%s)'  % t.value)
 
 def t_WRONG_FLOAT(t):
     r'(\d+\.(?!\d))|((?<!\d)\.\d+)'
