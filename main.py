@@ -47,7 +47,6 @@ def t_error(t):
     print("Token ilegal encontrado: '%s'" % t.value[0])
     t.lexer.skip(1)
 
-
 def t_ILLFORMED(t):
     r'(\d+)([_][\w]|[a-zA-Z]+[_0-9a-zA-Z]*)'
     print('Token no válido: (%s) Los identificadores no empiezan con número.'  % t.value)
@@ -61,14 +60,17 @@ def t_IDENTIFIER(t):
     t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
+def t_STRING(t):
+    r'\"\w*\"'
+    return t
 
 def t_COMMENTS_SL(t):
     r'\/\/.*'
-    pass
+    return t
 	
 def t_COMMENTS_ML(t):
     r'\/\*[\w*\W*]*\*\/'
-    pass
+    return t
 
 # Esta necesita más trabajo para obtener solo el número de importancia.
 def t_INTEGER_LITERAL(t):
