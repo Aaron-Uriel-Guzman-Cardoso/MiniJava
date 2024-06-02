@@ -36,9 +36,10 @@ reserved = {
     'System.out.println': 'PRINTLN'
 }
 tokens = (['IDENTIFIER', 'INTEGER_LITERAL', 'FLOAT_LITERAL',
-        'LESS_EQUAL', 'MORE_EQUAL', 'COMMENTS_SL', 'COMMENTS_ML'] + list(reserved.values()))
-
+        'LESS_EQUAL', 'MORE_EQUAL', 'COMMENT', 'MULTILINE_COMMENT'] + list(reserved.values()))
 t_ignore = ' \t'
+t_LESS_EQUAL = r'<='
+t_MORE_EQUAL = r'>='
 
 def t_newline(t):
     r'\n+'
@@ -48,13 +49,15 @@ def t_error(t):
     print("Token ilegal encontrado: '%s'" % t.value[0])
     t.lexer.skip(1)
 
-def t_ILLFORMED(t):
+def t_INVALID_IDENTIFIER(t):
     r'(\b_\b)|(\b[0-9]+[_a-zA-Z].*?\b)'
-    print('Token no válido: (%s)'  % t.value)
+    print('Token no válido: \'%s\''  % t.value)
+    t.lexer.skip(1)
 
-def t_WRONG_FLOAT(t):
+def t_INVALID_FLOAT(t):
     r'(\d+\.(?!\d))|((?<!\d)\.\d+)'
     print('Token no válido: (%s) Numero flotante mal estructurado' % t.value)
+    t.lexer.skip(1)
 
 def t_IDENTIFIER(t):
     r'(System\.out\.println)|(_+[a-zA-Z0-9]+)|([a-zA-Z][_a-zA-Z0-9]*)'
@@ -62,15 +65,16 @@ def t_IDENTIFIER(t):
     return t
 
 def t_STRING(t):
-    r'\"\w*\"'
+    r'\"([^\"\n]|\\.)*\"'
     return t
 
-def t_COMMENTS_SL(t):
+def t_COMMENT(t):
     r'\/\/.*'
     return t
 	
-def t_COMMENTS_ML(t):
-    r'\/\*[\w*\W*]*\*\/'
+def t_MULTILINE_COMMENT(t):
+    r'(?s:/\*.*?\*/)'
+    t.lexer.lineno += t.value.count('\n')
     return t
 
 # Esta necesita más trabajo para obtener solo el número de importancia.

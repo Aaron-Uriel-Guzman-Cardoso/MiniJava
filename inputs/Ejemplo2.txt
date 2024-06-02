@@ -1,6 +1,6 @@
 class binarySearch{
     public boolean main(String[] a){
-	
+	System.out.println(new bS().start(20));
 	return 0;
     }
 }
