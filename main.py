@@ -100,6 +100,31 @@ def t_FLOAT_LITERAL(t):
     t.value = float(t.value)
     return t
 
+def p_pre_program(p):
+    'PreProgram : ClassDecl Program'
+    pass
+
+def p_program(p):
+    '''Program : ClassDecl Program
+               | Empty'''
+    pass
+
+def p_class_decl(p):
+    '''ClassDecl : CLASS IDENTIFIER Extends '{' '}'  '''
+    pass
+
+def p_extends(p):
+    '''Extends : EXTENDS IDENTIFIER
+               | Empty'''
+    pass
+
+def p_empty(p):
+    'Empty :'
+    pass
+
+def p_error(p):
+    print('Error sintáctico cerca de la cadena:', p.value)
+
 def main():
     if (len(sys.argv) < 2):
         print("Forma de uso:")
