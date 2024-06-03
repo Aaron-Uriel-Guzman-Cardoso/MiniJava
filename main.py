@@ -115,5 +115,10 @@ def main():
             break
         print(tok)
 
+    parser = yacc.yacc()
+    for lineStr in inputStr.split('\n'):
+        print('Probando', lineStr)
+        parser.parse(inputStr)
+
 if __name__ == "__main__":
     main()
