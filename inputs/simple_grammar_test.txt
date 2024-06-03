@@ -1,1 +1,5 @@
-class Hola extends Papa { }
+class Hola extends Papa
+{
+    boolean hola_xd;
+    String myString;
+}

@@ -110,7 +110,31 @@ def p_program(p):
     pass
 
 def p_class_decl(p):
-    '''ClassDecl : CLASS IDENTIFIER Extends '{' '}'  '''
+    '''ClassDecl : CLASS IDENTIFIER Extends \
+                   '{' VarDecls MethodDecls '}'  '''
+    pass
+
+def p_var_decls(p):
+    '''VarDecls : VarDecl VarDecls
+                | Empty'''
+    pass
+
+def p_var_decl(p):
+    '''VarDecl : Type IDENTIFIER ';'
+               | STATIC Type IDENTIFIER ';' '''
+    pass
+
+def p_type(p):
+    '''Type : Type '[' ']'
+            | BOOLEAN
+            | STRING
+            | FLOAT
+            | INT
+            | IDENTIFIER '''
+    pass
+
+def p_method_decls(p):
+    '''MethodDecls : Empty'''
     pass
 
 def p_extends(p):
