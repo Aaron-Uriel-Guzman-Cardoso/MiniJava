@@ -134,7 +134,31 @@ def p_type(p):
     pass
 
 def p_method_decls(p):
-    '''MethodDecls : Empty'''
+    '''MethodDecls : MethodDecl MethodDecls
+                   | Empty'''
+    pass
+
+def p_method_decl(p):
+    '''MethodDecl : PUBLIC Type IDENTIFIER '(' ParamList ')' \
+                    '{' VarDecls Statements RETURN Expression ';' '}' '''
+    pass
+
+def p_param_list(p):
+    '''ParamList : Type IDENTIFIER Params
+                 | Empty'''
+    pass
+
+def p_params(p):
+    '''Params : ',' Type IDENTIFIER Params
+              | Empty'''
+    pass
+
+def p_statements(p):
+    '''Statements : Empty'''
+    pass
+
+def p_expression(p):
+    '''Expression : Empty'''
     pass
 
 def p_extends(p):
@@ -145,6 +169,7 @@ def p_extends(p):
 def p_empty(p):
     'Empty :'
     pass
+
 
 def p_error(p):
     print('Error sintáctico cerca de la cadena:', p.value)
