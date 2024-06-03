@@ -1,6 +1,6 @@
 import sys
-import ply
-import ply.lex
+import ply.lex as lex
+import ply.yacc as yacc
 
 operators = ['+', '-', '/', '*', '&', '|', '<', '>',
              '.', '!', ',', '=']
@@ -107,7 +107,7 @@ def main():
         return
     filename = sys.argv[1]
     inputStr = open(filename, "r").read()
-    lexer = ply.lex.lex()
+    lexer = lex.lex()
     lexer.input(inputStr)
     while True:
         tok = lexer.token()
