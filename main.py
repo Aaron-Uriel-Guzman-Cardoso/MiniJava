@@ -63,14 +63,14 @@ def t_INVALID_INTEGER(t):
     r'\b0*(\d{11,}|429496729[6-9]|4294967[3-9][0-9]{2}|429496[8-9][0-9]{3}|42949[7-9][0-9]{4}|429[5-9][0-9]{6}|4[3-9][0-9]{8}|[5-9][0-9]{9})\b'
     print('Error léxico: entero con valor superior al máximo')
     print('\tLínea:', t.lineno)
-    print('\tCadena:', t.value[0])
+    print('\tCadena:', t.value)
     t.lexer.skip(1)
 
 def t_INVALID_FLOAT(t):
     r'(\d+\.(?!\d))|((?<!\d)\.\d+)'
     print('Error léxico: sintaxis ilegal para números flotantes')
     print('\tLínea:', t.lineno)
-    print('\tCadena:', t.value[0])
+    print('\tCadena:', t.value)
     t.lexer.skip(1)
 
 def t_IDENTIFIER(t):
