@@ -55,7 +55,7 @@ def t_INVALID_IDENTIFIER(t):
     r'(\b_\b)|(\b[0-9]+[_a-zA-Z].*?\b)'
     print('Error léxico: identificador inválido')
     print('\tLínea:', t.lineno)
-    print('\tCadena:', t.value[0])
+    print('\tCadena:', t.value)
     t.lexer.skip(1)
 
 
