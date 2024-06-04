@@ -3,8 +3,9 @@ class Hola extends Papa
     boolean hola_xd;
     String myString;
 
-    public myMetodo (int a, float b) {
+    public int myMetodo (int a, float b) {
         int x;
         int y;
+        return;
     }
 }
