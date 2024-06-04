@@ -35,7 +35,7 @@ reserved = {
     'null': 'NULL',
     'System.out.println': 'PRINTLN'
 }
-tokens = (['IDENTIFIER', 'INTEGER_LITERAL', 'FLOAT_LITERAL',
+tokens = (['IDENTIFIER', 'INTEGER_LITERAL', 'FLOAT_LITERAL', 'STRING_LITERAL',
         'LESS_EQUAL', 'MORE_EQUAL', 'COMMENT', 'MULTILINE_COMMENT'] + list(reserved.values()))
 t_ignore = ' \t'
 t_LESS_EQUAL = r'<='
@@ -78,7 +78,7 @@ def t_IDENTIFIER(t):
     t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
-def t_STRING(t):
+def t_STRING_LITERAL(t):
     r'\"([^\"\n]|\\.)*\"'
     return t
 

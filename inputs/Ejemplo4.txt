@@ -11,6 +11,7 @@ class principal {
 class suma {
          int num_1,64564563563354345,b; //Declaracion de varias variables
          float num_2#;
+         String cadena = "abcdefg";
          float suma; 
 	public int nuevo(int s){
 		 suma=suma+.76763+6.2; //Suma con error
