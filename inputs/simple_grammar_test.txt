@@ -6,6 +6,6 @@ class Hola extends Papa
     public int myMetodo (int a, float b) {
         int x;
         int y;
-        return;
+        return x + y;
     }
 }
