@@ -153,7 +153,27 @@ def p_params(p):
     pass
 
 def p_statements(p):
-    '''Statements : Empty'''
+    '''Statements : '{' StatementList '}'
+                  | IF '(' Expression ')' Statements ELSE Statements
+                  | IF '(' Expression ')' Statements 
+                  | WHILE '(' Expression ')' Statements
+                  | PRINTLN '(' Expression ')' ';'
+                  | IDENTIFIER '=' Expression ';'
+                  | BREAK ';'
+                  | CONTINUE ';'
+                  | IDENTIFIER '[' Expression ']' '=' Expression ';'
+                  | SWITCH '(' Expression ')' '{' \
+                    SwitchCases DEFAULT ':' Statements StateList '}' '''
+    pass
+
+def p_state_list(p):
+    '''StateList  : Statements StateList
+                  | Empty'''
+    pass
+
+def p_switch_cases(p):
+    '''SwitchCases: CASE INTEGER_LITERAL ':' Statements StateList SwitchCases
+                  | Empty'''
     pass
 
 def p_expression(p):
@@ -173,17 +193,16 @@ def p_expression(p):
                   | NEW Type '[' Expression ']'
                   | NEW IDENTIFIER '(' ')'
                   | '!' Expression
-                  | '(' Expression ')'
-                  '''
+                  | '(' Expression ')' '''
     pass
 
-def p_expression_list(p):
+def p_expr_list(p):
     '''ExprList   : Expression ExprList
                   | ',' Expression ExprList
-                  | Empty'''
+                  | Empty '''
     pass
 
-def p_expression_operator(p):
+def p_expr_op(p):
     '''ExprOp     : '&'
                   | '|'
                   | '<'
@@ -192,9 +211,8 @@ def p_expression_operator(p):
                   | '-'
                   | '*'
                   | '/'
-                  | '='
                   | LESS_EQUAL
-                  | MORE_EQUAL'''
+                  | MORE_EQUAL '''
     pass
 
 def p_extends(p):
