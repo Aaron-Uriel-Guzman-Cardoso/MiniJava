@@ -35,7 +35,7 @@ reserved = {
     'null': 'NULL',
     'System.out.println': 'PRINTLN'
 }
-tokens = (['IDENTIFIER', 'INTEGER_LITERAL', 'FLOAT_LITERAL',
+tokens = (['IDENTIFIER', 'INTEGER_LITERAL', 'FLOAT_LITERAL', 'STRING_LITERAL',
         'LESS_EQUAL', 'MORE_EQUAL', 'COMMENT', 'MULTILINE_COMMENT'] + list(reserved.values()))
 t_ignore = ' \t'
 t_LESS_EQUAL = r'<='
@@ -58,7 +58,6 @@ def t_INVALID_IDENTIFIER(t):
     print('\tCadena:', t.value)
     t.lexer.skip(1)
 
-
 def t_INVALID_INTEGER(t):
     r'\b0*(\d{11,}|429496729[6-9]|4294967[3-9][0-9]{2}|429496[8-9][0-9]{3}|42949[7-9][0-9]{4}|429[5-9][0-9]{6}|4[3-9][0-9]{8}|[5-9][0-9]{9})\b'
     print('Error léxico: entero con valor superior al máximo')
@@ -78,7 +77,7 @@ def t_IDENTIFIER(t):
     t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
-def t_STRING(t):
+def t_STRING_LITERAL(t):
     r'\"([^\"\n]|\\.)*\"'
     return t
 
@@ -153,11 +152,66 @@ def p_params(p):
     pass
 
 def p_statements(p):
-    '''Statements : Empty'''
+    '''Statements : '{' StatementList '}'
+                  | IF '(' Expression ')' Statements ELSE Statements
+                  | IF '(' Expression ')' Statements 
+                  | WHILE '(' Expression ')' Statements
+                  | PRINTLN '(' Expression ')' ';'
+                  | IDENTIFIER '=' Expression ';'
+                  | BREAK ';'
+                  | CONTINUE ';'
+                  | IDENTIFIER '[' Expression ']' '=' Expression ';'
+                  | SWITCH '(' Expression ')' '{' \
+                    SwitchCases DEFAULT ':' Statements StateList '}' '''
+    pass
+
+def p_state_list(p):
+    '''StateList  : Statements StateList
+                  | Empty'''
+    pass
+
+def p_switch_cases(p):
+    '''SwitchCases: CASE INTEGER_LITERAL ':' Statements StateList SwitchCases
+                  | Empty'''
     pass
 
 def p_expression(p):
-    '''Expression : Empty'''
+    '''Expression : Expression ExprOp Expression
+                  | Expression '[' Expression ']'
+                  | Expression '.' LENGTH
+                  | Expression '.' IDENTIFIER '(' ExprList ')'
+                  | INTEGER_LITERAL
+                  | FLOAT_LITERAL
+                  | STRING_LITERAL
+                  | STRING_LITERAL
+                  | NULL
+                  | TRUE
+                  | FALSE
+                  | IDENTIFIER
+                  | THIS
+                  | NEW Type '[' Expression ']'
+                  | NEW IDENTIFIER '(' ')'
+                  | '!' Expression
+                  | '(' Expression ')' '''
+    pass
+
+def p_expr_list(p):
+    '''ExprList   : Expression ExprList
+                  | ',' Expression ExprList
+                  | Empty '''
+    pass
+
+def p_expr_op(p):
+    '''ExprOp     : '&'
+                  | '|'
+                  | '<'
+                  | '>'
+                  | '+'
+                  | '-'
+                  | '*'
+                  | '/'
+                  | LESS_EQUAL
+                  | MORE_EQUAL '''
     pass
 
 def p_extends(p):
