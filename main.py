@@ -152,6 +152,10 @@ def p_params(p):
               | Empty'''
     pass
 
+def p_statement_list(p):
+    '''StatementList : Empty'''
+    pass
+
 def p_statements(p):
     '''Statements : '{' StatementList '}'
                   | IF '(' Expression ')' Statements ELSE Statements
@@ -172,8 +176,8 @@ def p_state_list(p):
     pass
 
 def p_switch_cases(p):
-    '''SwitchCases: CASE INTEGER_LITERAL ':' Statements StateList SwitchCases
-                  | Empty'''
+    '''SwitchCases  : CASE INTEGER_LITERAL ':' Statements StateList SwitchCases
+                    | Empty'''
     pass
 
 def p_expression(p):
@@ -183,8 +187,7 @@ def p_expression(p):
                   | Expression '.' IDENTIFIER '(' ExprList ')'
                   | INTEGER_LITERAL
                   | FLOAT_LITERAL
-                  | STRING_LITERAL
-                  | STRING_LITERAL
+                  | STRING_LITERAL               
                   | NULL
                   | TRUE
                   | FALSE
@@ -203,16 +206,16 @@ def p_expr_list(p):
     pass
 
 def p_expr_op(p):
-    '''ExprOp     : '&'
-                  | '|'
-                  | '<'
-                  | '>'
-                  | '+'
-                  | '-'
-                  | '*'
-                  | '/'
-                  | LESS_EQUAL
-                  | MORE_EQUAL '''
+    '''ExprOp : '&'
+              | '|'
+              | '<'
+              | '>'
+              | '+'
+              | '-'
+              | '*'
+              | '/'
+              | LESS_EQUAL
+              | MORE_EQUAL '''
     pass
 
 def p_extends(p):
