@@ -99,14 +99,13 @@ def t_FLOAT_LITERAL(t):
     t.value = float(t.value)
     return t
 
-def p_pre_program(p):
-    'PreProgram : ClassDecl Program'
+def p_program(p):
+    '''Program : ClassDecls'''
     pass
 
-def p_program(p):
-    '''Program : ClassDecl Program
-               | Empty'''
-    pass
+def p_class_decls(p):
+    '''ClassDecls : ClassDecl ClassDecls
+                  | Empty'''
 
 def p_class_decl(p):
     '''ClassDecl : CLASS IDENTIFIER Extends \
