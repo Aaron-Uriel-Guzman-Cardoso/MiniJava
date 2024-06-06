@@ -192,7 +192,7 @@ def p_expression(p):
     '''Expression : Expression ExprOp Expression
                   | Expression '[' Expression ']'
                   | Expression '.' LENGTH
-                  | Expression '.' IDENTIFIER '(' ExprList ')'
+                  | Expression '.' IDENTIFIER '(' ExpressionList ')'
                   | INTEGER_LITERAL
                   | FLOAT_LITERAL
                   | STRING_LITERAL
@@ -207,10 +207,14 @@ def p_expression(p):
                   | '(' Expression ')' '''
     pass
 
-def p_expr_list(p):
-    '''ExprList   : Expression ExprList
-                  | ',' Expression ExprList
-                  | Empty '''
+def p_expression_list(p):
+    '''ExpressionList : Expression Expressions
+                      | Empty'''
+    pass
+
+def p_expressions(p):
+    '''Expressions : ',' Expression Expressions
+                   | Empty '''
     pass
 
 def p_expr_op(p):
