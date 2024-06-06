@@ -99,6 +99,18 @@ def t_FLOAT_LITERAL(t):
     t.value = float(t.value)
     return t
 
+precedence = (
+    ('right', ','),
+    ('right', '='),
+    ('left', '|'),
+    ('left', '&'),
+    ('nonassoc', '<', '>', 'LESS_EQUAL', 'MORE_EQUAL'),
+    ('left', '+', '-'),
+    ('left', '*', '/'),
+    ('right', '!'),
+    ('left', '.')
+)
+
 def p_program(p):
     '''Program : ClassDecls'''
     pass
@@ -109,7 +121,7 @@ def p_class_decls(p):
 
 def p_class_decl(p):
     '''ClassDecl : CLASS IDENTIFIER Extends \
-                   '{' VarDecls MethodDecls '}'  '''
+                   '{' VarDecls MethodDecls '}' '''
     pass
 
 def p_var_decls(p):
@@ -182,7 +194,7 @@ def p_expression(p):
                   | Expression '.' IDENTIFIER '(' ExprList ')'
                   | INTEGER_LITERAL
                   | FLOAT_LITERAL
-                  | STRING_LITERAL               
+                  | STRING_LITERAL
                   | NULL
                   | TRUE
                   | FALSE
