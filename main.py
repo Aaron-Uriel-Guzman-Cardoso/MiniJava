@@ -151,31 +151,27 @@ def p_params(p):
               | Empty'''
     pass
 
-def p_statement_list(p):
-    '''StatementList : Empty'''
-    pass
-
-def p_statements(p):
-    '''Statements : '{' StatementList '}'
-                  | IF '(' Expression ')' Statements ELSE Statements
-                  | IF '(' Expression ')' Statements 
-                  | WHILE '(' Expression ')' Statements
+def p_statement(p):
+    '''Statement : '{' Statement Statements '}'
+                  | IF '(' Expression ')' Statement ELSE Statement
+                  | IF '(' Expression ')' Statement 
+                  | WHILE '(' Expression ')' Statement
                   | PRINTLN '(' Expression ')' ';'
                   | IDENTIFIER '=' Expression ';'
                   | BREAK ';'
                   | CONTINUE ';'
                   | IDENTIFIER '[' Expression ']' '=' Expression ';'
                   | SWITCH '(' Expression ')' '{' \
-                    SwitchCases DEFAULT ':' Statements StateList '}' '''
+                    SwitchCases DEFAULT ':' Statement Statements '}' '''
     pass
 
-def p_state_list(p):
-    '''StateList  : Statements StateList
-                  | Empty'''
+def p_statements(p):
+    '''Statements  : Statement Statements
+                   | Empty'''
     pass
 
 def p_switch_cases(p):
-    '''SwitchCases  : CASE INTEGER_LITERAL ':' Statements StateList SwitchCases
+    '''SwitchCases  : CASE INTEGER_LITERAL ':' Statement Statements SwitchCases
                     | Empty'''
     pass
 
