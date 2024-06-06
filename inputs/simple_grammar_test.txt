@@ -1,11 +1,6 @@
 class Hola extends Papa
 {
-    boolean hola_xd;
-    String myString;
-
     public int myMetodo (int a, float b) {
-        int x;
-        int y;
         a = 5 + 3;
         return x + y;
     }

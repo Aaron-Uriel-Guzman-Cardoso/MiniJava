@@ -108,7 +108,7 @@ precedence = (
     ('left', '+', '-'),
     ('left', '*', '/'),
     ('right', '!'),
-    ('left', '.')
+    ('left', '.', '(', ')', '[', ']')
 )
 
 def p_program(p):
@@ -118,6 +118,7 @@ def p_program(p):
 def p_class_decls(p):
     '''ClassDecls : ClassDecl ClassDecls
                   | Empty'''
+    pass
 
 def p_class_decl(p):
     '''ClassDecl : CLASS IDENTIFIER Extends \
