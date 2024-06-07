@@ -1,6 +1,7 @@
-class Hola extends Papa
+class Hola Extends
 {
-    public int myMetodo (int a, float b) {
+    VarDecls
+    public Type myMetodo (ParamList) {
         a = 5 + 3;
         return x + y;
     }

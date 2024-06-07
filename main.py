@@ -112,7 +112,7 @@ precedence = (
 )
 
 def p_program(p):
-    '''Program : ClassDecls'''
+    '''Program : ClassDecl ClassDecls'''
     pass
 
 def p_class_decls(p):
