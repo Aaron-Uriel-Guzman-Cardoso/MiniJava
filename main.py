@@ -189,7 +189,16 @@ def p_switch_cases(p):
     pass
 
 def p_expression(p):
-    '''Expression : Expression ExprOp Expression
+    '''Expression : Expression '&' Expression
+                  | Expression '|' Expression
+                  | Expression '<' Expression
+                  | Expression '>' Expression
+                  | Expression '+' Expression
+                  | Expression '-' Expression
+                  | Expression '*' Expression
+                  | Expression '/' Expression
+                  | Expression LESS_EQUAL Expression
+                  | Expression MORE_EQUAL Expression
                   | Expression '[' Expression ']'
                   | Expression '.' LENGTH
                   | Expression '.' IDENTIFIER '(' ExpressionList ')'
@@ -215,19 +224,6 @@ def p_expression_list(p):
 def p_expressions(p):
     '''Expressions : ',' Expression Expressions
                    | Empty '''
-    pass
-
-def p_expr_op(p):
-    '''ExprOp : '&'
-              | '|'
-              | '<'
-              | '>'
-              | '+'
-              | '-'
-              | '*'
-              | '/'
-              | LESS_EQUAL
-              | MORE_EQUAL '''
     pass
 
 def p_extends(p):
