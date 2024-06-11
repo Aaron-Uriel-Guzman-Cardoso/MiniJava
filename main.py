@@ -126,7 +126,7 @@ def p_class_decl(p):
     pass
 
 def p_var_decls(p):
-    '''VarDecls : VarDecl VarDecls
+    '''VarDecls : VarDecls VarDecl
                 | Empty'''
     pass
 
