@@ -166,8 +166,7 @@ def p_params(p):
 
 def p_statement(p):
     '''Statement : '{' Statement Statements '}'
-                  | IF '(' Expression ')' Statement ELSE Statement
-                  | IF '(' Expression ')' Statement 
+                  | IF '(' Expression ')' Statement Else
                   | WHILE '(' Expression ')' Statement
                   | PRINTLN '(' Expression ')' ';'
                   | IDENTIFIER '=' Expression ';'
@@ -177,6 +176,10 @@ def p_statement(p):
                   | SWITCH '(' Expression ')' '{' \
                     SwitchCases DEFAULT ':' Statement Statements '}' '''
     pass
+
+def p_else(p):
+    '''Else : ELSE Statement
+            | Empty'''
 
 def p_statements(p):
     '''Statements  : Statement Statements
