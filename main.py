@@ -131,9 +131,15 @@ def p_var_decls(p):
     pass
 
 def p_var_decl(p):
-    '''VarDecl : Type IDENTIFIER ';'
+    '''VarDecl : Type IDENTIFIER ExtraIdentifiers ';'
                | STATIC Type IDENTIFIER ';' '''
     pass
+
+def p_extra_identifiers(p):
+    '''ExtraIdentifiers : ',' IDENTIFIER ExtraIdentifiers
+                        | Empty '''
+    pass
+
 
 def p_type(p):
     '''Type : Type '[' ']'
