@@ -1,0 +1,14 @@
+class Hola extends Papa
+{
+    public float myMetodo (int a, float b) {
+        int a;
+        float arreglo;
+        String [] a;
+
+
+        a[1] = 5 + 6;
+
+        if (a < 5) a = 9;
+        return x + y;
+    }
+}
