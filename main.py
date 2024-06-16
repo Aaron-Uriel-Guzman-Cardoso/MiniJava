@@ -51,6 +51,15 @@ def t_error(t):
     print('\tCadena:', t.value[0])
     t.lexer.skip(1)
 
+def t_COMMENT(t):
+    r'\/\/.*'
+    pass
+	
+def t_MULTILINE_COMMENT(t):
+    r'(?s:/\*.*?\*/)'
+    t.lexer.lineno += t.value.count('\n')
+
+
 def t_INVALID_IDENTIFIER(t):
     r'(\b_\b)|(\b[0-9]+[_a-zA-Z].*?\b)'
     print('Error léxico: identificador inválido')
@@ -81,22 +90,14 @@ def t_STRING_LITERAL(t):
     r'\"([^\"\n]|\\.)*\"'
     return t
 
-def t_COMMENT(t):
-    r'\/\/.*'
-    pass
-	
-def t_MULTILINE_COMMENT(t):
-    r'(?s:/\*.*?\*/)'
-    t.lexer.lineno += t.value.count('\n')
+def t_FLOAT_LITERAL(t):
+    r'[0-9]+\.[0-9]+'
+    t.value = float(t.value)
+    return t
 
 def t_INTEGER_LITERAL(t):
     r'\b0*([1-3]?[0-9]{1,9}|41[0-9]{8}|428[0-9]{7}|4293[0-9]{6}|42948[0-9]{5}|429495[0-9]{4}|4294966[0-9]{3}|42949671[0-9]{2}|429496728[0-9]|429496729[0-5])\b'
     t.value = int(t.value)
-    return t
-
-def t_FLOAT_LITERAL(t):
-    r'[0-9]+\.[0-9]+'
-    t.value = float(t.value)
     return t
 
 precedence = (
