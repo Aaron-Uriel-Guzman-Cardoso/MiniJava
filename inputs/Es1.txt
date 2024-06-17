@@ -1,0 +1,23 @@
+/*
+Programa de Ejemplo en Minijava
+*/
+class factorial {
+	static float h4;
+	float m_4;
+    public boolean siOno(String[] a) {
+        boolean si;
+	System.out.println(new fac().computeFac(10));
+	return si;
+    }
+}
+
+class fac {
+    public int computeFac(int num) {
+        int num_aux   //ES1 FALTA PUNTO Y COMA
+	//Comentario #323 de una linea
+        if (num < 1) num_aux = 1;
+        else num_aux = num * (this.computeFac(num - 1));
+
+        return num_aux;
+    }
+}

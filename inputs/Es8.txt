@@ -1,0 +1,22 @@
+/*
+Programa 4 de Ejemplo en Minijava
+*/
+class principal {
+    public int main(String[] a) {
+        System.out.println(i);
+	return 0;
+    }
+}
+
+class suma {
+         int num_1,a,b; //Declaracion de varias variables
+         float num_2;
+         float suma; 
+	public int nuevo(int s){
+		 suma=suma  1.3+6.2; //ES8 FALTA OPERADOR
+		  num_1=a+b;
+		return 0;
+	}
+        
+         
+}

@@ -247,7 +247,9 @@ def p_empty(p):
 
 
 def p_error(p):
-    print('Error sintáctico cerca de la cadena:', p.value)
+    print('Error sintactico cerca de la cadena:', p.value)
+
+
 
 def main():
     if (len(sys.argv) < 2):
@@ -262,10 +264,11 @@ def main():
         tok = lexer.token()
         if not tok:
             break
-        print(tok)
+        #print(tok)
 
     parser = yacc.yacc()
     parser.parse(inputStr)
+    print("Analisis Finalizado")
 
 if __name__ == "__main__":
     main()
